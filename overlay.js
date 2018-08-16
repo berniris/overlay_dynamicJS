@@ -10,6 +10,7 @@ cartButton.innerHTML = "View Cart";
 var overlay = null;
 
 var background = document.createElement('div');
+background.id = "background";
 
 var bgCss = "position: fixed; z-index: 2; width: 100%; color: white; height: 100%; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7); font-size: 25px;"
 var buttonCss = "border: 4px solid #ffffff;"
@@ -35,13 +36,18 @@ function createOverlayItems() {
     }
     var overlay = document.createElement('div');
     overlay.id = "cart-preview";
+    var cartAnchor = document.createElement('a');
+    cartAnchor.setAttribute('href', '/cart')
+    overlay.setAttribute('style', 'width: 15%; margin: 0 auto; text-align: left; padding-top: 10px; font: 20px/1 ars_maquette_proregular,sans-serif;')
     overlay.appendChild(totalItems);
     overlay.appendChild(subtotal);
     overlay.append(cartImages[0]);
     overlay.append(cartImages[1]);
     cartButton.setAttribute('style', buttonCss);
     exitButton.setAttribute('style', buttonCss);
-    overlay.append(cartButton);
+    exitButton.onclick = closeOverlay;
+    cartAnchor.appendChild(cartButton);
+    overlay.append(cartAnchor);
     overlay.appendChild(linebreak);
     overlay.append(exitButton);
     return overlay;
@@ -52,4 +58,13 @@ function cartOverlay() {
     background.setAttribute('style', bgCss);
     background.appendChild(overlay);
     body.appendChild(background);
+}
+
+function closeOverlay() {
+    var query = $('#background');
+    var isVisible = query.is(':visible');
+
+    if (isVisible === true) {
+        query.hide();
+    }
 }
