@@ -8,11 +8,11 @@ const cartQuantityData = $('.minicart-quantity').html();
 const subtotalData = $('.order-value').text();
 const cartImages = document.querySelectorAll('div.mini-cart-image > a > img');
 
-// global css variables 
+// global css variables
 const bgCss = 'position: fixed; z-index: 2; width: 100%; color: #000000; height: 100%; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center;';
-const buttonCss = 'border: 2px solid #000000; margin: 10px; width: 100%; height: 100%;';
+const buttonCss = 'border: 2px solid #000000; margin: 10px; width: 100px';
 
-// detects if user has scrolled to bottom 10% of page 
+// detects if user has scrolled to bottom 10% of page
 $(window).scroll(() => {
     if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
         createOverlayItems();
@@ -48,24 +48,27 @@ function createTextContainer() {
     const subtotal = document.createElement('p');
     const textContainer = document.createElement('div');
     const totalItems = document.createElement('p');
-    totalItems.innerHTML = `${'Total Items: ' + '    '}${cartQuantityData}`;
-    subtotal.innerHTML = `${'Subtotal:' + '     '}${subtotalData}`;
+    totalItems.innerHTML = `${'Total Items: ' + ' '}${cartQuantityData}`;
+    subtotal.innerHTML = `${'Subtotal:' + ' '}${subtotalData}`;
     textContainer.appendChild(totalItems);
     textContainer.appendChild(subtotal);
-    textContainer.setAttribute('style', 'display: flex; flex-direction: column; text-transform: uppercase; justify-content: space-between; height: 15%;');
+    textContainer.setAttribute('style', 'display: flex; flex-direction: column; text-transform: uppercase; justify-content: center; height: 20%; width: 33%;');
     return textContainer;
 }
 
 // create container for cart images
 function createImageContainer() {
     const imageContainer = document.createElement('div');
-    imageContainer.append(cartImages[0]);
-    imageContainer.append(cartImages[1]);
+    if (cartImages.length != 0) {
+        for (var i = 0; i < cartImages.length; i++) {
+            imageContainer.append(cartImages[i])
+        }
+    }
     imageContainer.setAttribute('style', 'display: flex; justify-content: center;');
     return imageContainer;
 }
 
-// closes overlay on user click 
+// closes overlay on user click
 function closeOverlay() {
     const query = $('#background');
     const isVisible = query.is(':visible');
@@ -88,7 +91,7 @@ function createOverlayItems() {
     overlay.appendChild(textDiv);
     overlay.appendChild(imageDiv);
     overlay.appendChild(buttonDiv);
-    overlay.setAttribute('style', 'width: 70%; max-height: 600px; height: 60%; z-index: 5; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; letter-spacing: -.02em; margin: 0 auto; font: 14px/1 ars_maquette_probold,sans-serif; background-color: #ffffff; border: 2px solid #CC0001; display: flex; justify-content: space-around; align-items: center');
+    overlay.setAttribute('style', 'min-width: 400px; max-width: 1500px; min-height: 300px; width: 70%; height: 50%; z-index: 5; padding: 10px; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; letter-spacing: -.02em; margin: 0 auto; font: 14px/1 ars_maquette_probold,sans-serif; background-color: #ffffff; border: 2px solid #CC0001; display: flex; justify-content: space-around; align-items: center');
     return overlay;
 }
 
