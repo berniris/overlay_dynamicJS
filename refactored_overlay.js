@@ -22,10 +22,11 @@ $(window).scroll(() => {
 
 // create and style buttons to exit the overlay and visit the cart
 function createButtonContainer() {
-    const buttonContainer = document.createElement('div');
-    buttonContainer.setAttribute('style', 'display: flex; flex-direction: column;');
     const exitButton = document.createElement('button');
     const cartButton = document.createElement('button');
+    const buttonAnchor = document.createElement('a');
+    const buttonContainer = document.createElement('div');
+    buttonContainer.setAttribute('style', 'display: flex; flex-direction: column;');
     exitButton.innerHTML = 'Exit';
     cartButton.innerHTML = 'View Cart';
     exitButton.setAttribute('style', buttonCss);
@@ -35,7 +36,6 @@ function createButtonContainer() {
     cartButton.classList.add('mixt-button');
     cartButton.classList.add('variant-4');
     exitButton.onclick = closeOverlay;
-    const buttonAnchor = document.createElement('a');
     buttonAnchor.appendChild(cartButton);
     buttonAnchor.setAttribute('href', '/cart');
     buttonContainer.appendChild(exitButton);
@@ -45,10 +45,10 @@ function createButtonContainer() {
 
 // create container to hold cart details
 function createTextContainer() {
+    const subtotal = document.createElement('p');
     const textContainer = document.createElement('div');
     const totalItems = document.createElement('p');
     totalItems.innerHTML = `${'Total Items: ' + '    '}${cartQuantityData}`;
-    const subtotal = document.createElement('p');
     subtotal.innerHTML = `${'Subtotal:' + '     '}${subtotalData}`;
     textContainer.appendChild(totalItems);
     textContainer.appendChild(subtotal);
