@@ -8,7 +8,8 @@ const cartQuantityData = $('.minicart-quantity').html();
 const subtotalData = $('.order-value').text();
 const cartImages = document.querySelectorAll('div.mini-cart-image > a > img');
 
-// global css variables const bgCss = 'position: fixed; z-index: 2; width: 100%; color: #000000; height: 100%; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center;';
+// global css variables 
+const bgCss = 'position: fixed; z-index: 2; width: 100%; color: #000000; height: 100%; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center;';
 const buttonCss = 'border: 2px solid #000000; margin: 10px; width: 100%; height: 100%;';
 
 // detects if user has scrolled to bottom 10% of page 
